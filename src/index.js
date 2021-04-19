@@ -167,6 +167,10 @@ class Tooltip extends PureComponent {
         left = scrollX + pNode.left - offset
         break
 
+      case TOPLEFT:
+        top = scrollY + pNode.top - tipNode.height - offset
+        left = scrollX + pNode.left - offset
+        break
 
       default:
     }

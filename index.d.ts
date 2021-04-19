@@ -1,7 +1,13 @@
 declare module 'react-tooltip-portal' {
   import { CSSProperties, PureComponent } from 'react';
 
-  type Positions = 'top' | 'left' | 'bottom' | 'right' | 'bottom left';
+  type Positions =
+    | 'top'
+    | 'left'
+    | 'bottom'
+    | 'right'
+    | 'bottom left'
+    | 'top left';
 
   export interface TooltipProps<E extends Element> {
     active: boolean;
