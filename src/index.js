@@ -8,6 +8,10 @@ const TOP = 'top'
 const LEFT = 'left'
 const BOTTOM = 'bottom'
 const RIGHT = 'right'
+const BOTTOMLEFT = 'bottom left'
+const BOTTOMRIGHT = 'bottom right'
+const TOPLEFT = 'top left'
+const TOPRIGHT = 'top right'
 
 const canUseDOM = !!(window.document && window.document.createElement)
 const SafeElement = canUseDOM ? window.Element : {}
@@ -37,7 +41,7 @@ export default class TooltipPortal extends PureComponent {
 
   state = {
     hover: false,
-    timeout: () => {},
+    timeout: () => { },
     show: this.props.active
   }
 
@@ -53,7 +57,7 @@ export default class TooltipPortal extends PureComponent {
     }, this.setHoverTimeout)
   }
 
-  componentWillReceiveProps (nextProps, nextState) {
+  componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.active && !nextState.show) {
       this.setState({ show: true })
     }
@@ -75,7 +79,7 @@ export default class TooltipPortal extends PureComponent {
     })
   }
 
-  render () {
+  render() {
     const {
       active,
       parent,
@@ -116,11 +120,11 @@ class Tooltip extends PureComponent {
     left: 0
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getTipPosition()
   }
 
-  componentWillUpdate () {
+  componentWillUpdate() {
     this.getTipPosition()
   }
 
@@ -158,13 +162,19 @@ class Tooltip extends PureComponent {
         left = scrollX + pNode.left + pNode.width + offset
         break
 
+      case BOTTOMLEFT:
+        top = scrollY + pNode.top + pNode.height + offset
+        left = scrollX + pNode.left - offset
+        break
+
+
       default:
     }
 
     this.setState({ top, left })
   }
 
-  render () {
+  render() {
     const { tipStyle, onMouseLeave, onMouseEnter, className } = this.props
     const { top, left } = this.state
 
